@@ -24,13 +24,15 @@ a = ActionChains(driver)
 driver.get(link)
 
 status = input("Please log in. Type 1 if logged in: ")
+driver.get(link)
 low_price = 2
 high_price = 1000
 list = set()
+sleep(2)
+driver.find_element(by=By.CLASS_NAME, value="LiveBtn").click()
 
 while True:
     cart = False
-
     while True:
         try:
             parent = driver.find_element(by=By.CSS_SELECTOR, value="#content > div > div.CatalogPage-content > div.CatalogPage-items.CatalogPage-items--grid")
@@ -46,9 +48,10 @@ while True:
                 for x in price_list:
                     price = price + x
                 price = float(price)
+                print(price)
                 try:
                     discount = int(item.find_element(by=By.CLASS_NAME, value="ItemPreview-discount").text[2:].strip("%"))
-                    if discount > 19 and clean_data not in list and price > low_price and price < high_price:
+                    if discount > 15 and clean_data not in list and price > low_price and price < high_price:
                         list.add(clean_data)
                         b = item.find_element(by=By.CLASS_NAME, value="ItemPreview-mainAction")
                         a.move_to_element(b).perform()
