@@ -75,9 +75,9 @@ while True:
             cvv = driver.find_element(by=By.CLASS_NAME, value="adyen-checkout__card__cvc__input")
             pay = driver.find_element(by=By.CLASS_NAME, value="adyen-checkout__button--pay")
 
-            a.move_to_element(card_num).click().send_keys("4511292059118965").perform()
-            a.move_to_element(expiry_date).click().send_keys("06/29").perform()
-            a.move_to_element(cvv).click().send_keys("942").perform()
+            a.move_to_element(card_num).click().send_keys(**card_num**).perform()
+            a.move_to_element(expiry_date).click().send_keys(**date**).perform()
+            a.move_to_element(cvv).click().send_keys(**cvv**).perform()
             a.move_to_element(pay).click().perform()
             sleep(3)
             driver.get(link)
